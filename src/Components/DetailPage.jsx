@@ -1,0 +1,26 @@
+// src/components/DetailPage.js
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+const DetailPage = () => {
+  const { id } = useParams();
+  const { posts } = useSelector((state) => state.posts);
+  const post = posts.find((post) => post.id === parseInt(id));
+  console.log('post', post)
+
+  return (
+    <div>
+      <h1>Detail Page</h1>
+      {post && (
+        <div>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+          <p>User ID: {post.userId}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default DetailPage;
